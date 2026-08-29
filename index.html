@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <meta name="theme-color" content="#0f1226" />
+  <title>Imposter</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" href="icon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="icon.svg" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Imposter" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main id="app">
+
+    <!-- SETTINGS -->
+    <section class="screen" id="screen-settings">
+      <header class="screen-header">
+        <h1>Game Settings</h1>
+        <p class="subtitle">Set up your round</p>
+      </header>
+      <div class="screen-body">
+        <div class="field">
+          <label for="num-players">Number of players</label>
+          <input type="number" id="num-players" min="3" max="20" value="4" inputmode="numeric" />
+        </div>
+        <div class="field">
+          <label for="num-imposters">Number of imposters</label>
+          <input type="number" id="num-imposters" min="1" max="5" value="1" inputmode="numeric" />
+        </div>
+        <div class="field">
+          <label for="round-time">Time per round (seconds)</label>
+          <input type="number" id="round-time" min="5" max="600" value="60" inputmode="numeric" />
+        </div>
+      </div>
+      <footer class="screen-footer">
+        <button class="btn btn-primary" id="btn-from-settings" disabled>Next</button>
+      </footer>
+    </section>
+
+    <!-- PLAYERS -->
+    <section class="screen" id="screen-players">
+      <header class="screen-header">
+        <h1>Player Names</h1>
+        <p class="subtitle">Enter the name of each player</p>
+      </header>
+      <div class="screen-body">
+        <div id="player-inputs" class="player-inputs"></div>
+      </div>
+      <footer class="screen-footer">
+        <button class="btn btn-primary" id="btn-from-players" disabled>Next</button>
+      </footer>
+    </section>
+
+    <!-- CATEGORY -->
+    <section class="screen" id="screen-category">
+      <header class="screen-header">
+        <h1>Choose a Category</h1>
+        <p class="subtitle">Pick one for this round</p>
+      </header>
+      <div class="screen-body">
+        <div class="category-grid">
+          <button class="category-card selected" data-category="food" type="button">
+            <span class="category-emoji">🍕</span>
+            <span class="category-name">Food</span>
+          </button>
+          <button class="category-card" data-category="sports" type="button">
+            <span class="category-emoji">⚽</span>
+            <span class="category-name">Sports</span>
+          </button>
+          <button class="category-card" data-category="animals" type="button">
+            <span class="category-emoji">🐶</span>
+            <span class="category-name">Animals</span>
+          </button>
+          <button class="category-card" data-category="movies" type="button">
+            <span class="category-emoji">🎬</span>
+            <span class="category-name">Movies</span>
+          </button>
+          <button class="category-card" data-category="disney" type="button">
+            <span class="category-emoji">🏰</span>
+            <span class="category-name">Disney</span>
+          </button>
+          <button class="category-card" data-category="school" type="button">
+            <span class="category-emoji">📚</span>
+            <span class="category-name">School</span>
+          </button>
+          <button class="category-card" data-category="toys" type="button">
+            <span class="category-emoji">🧸</span>
+            <span class="category-name">Toys</span>
+          </button>
+          <button class="category-card" data-category="nature" type="button">
+            <span class="category-emoji">🌳</span>
+            <span class="category-name">Nature</span>
+          </button>
+        </div>
+      </div>
+      <footer class="screen-footer">
+        <button class="btn btn-primary" id="btn-from-category">Next</button>
+      </footer>
+    </section>
+
+    <!-- REVEAL -->
+    <section class="screen" id="screen-reveal">
+      <header class="screen-header">
+        <h1 id="reveal-player-name">Player</h1>
+        <p class="subtitle">Pass the device to this player</p>
+      </header>
+      <div class="screen-body reveal-body">
+        <div class="reveal-card" id="reveal-card">
+          <button class="btn btn-secondary" id="btn-reveal" type="button">Reveal Word</button>
+          <div class="reveal-word" id="reveal-word" hidden>
+            <span class="reveal-word-text" id="reveal-word-text">Hello</span>
+            <button class="btn btn-secondary btn-small" id="btn-hide" type="button">Hide</button>
+          </div>
+        </div>
+      </div>
+      <footer class="screen-footer">
+        <button class="btn btn-primary" id="btn-from-reveal">Next</button>
+      </footer>
+    </section>
+
+    <!-- HYPE -->
+    <section class="screen" id="screen-hype">
+      <div class="hype-body">
+        <p class="hype-label">Starting with</p>
+        <h1 class="hype-name" id="hype-name">—</h1>
+      </div>
+    </section>
+
+    <!-- TIMER -->
+    <section class="screen" id="screen-timer">
+      <div class="timer-body">
+        <p class="timer-label">Discuss and find the imposter</p>
+        <div class="timer-display" id="timer-display">00:00</div>
+      </div>
+    </section>
+
+    <!-- VOTE -->
+    <section class="screen" id="screen-vote">
+      <header class="screen-header">
+        <h1>Vote</h1>
+        <p class="subtitle" id="vote-subtitle">Select 1 player</p>
+      </header>
+      <div class="screen-body">
+        <div class="vote-grid" id="vote-grid"></div>
+      </div>
+      <footer class="screen-footer">
+        <button class="btn btn-primary" id="btn-from-vote" disabled>Next</button>
+      </footer>
+    </section>
+
+    <!-- RESULT -->
+    <section class="screen" id="screen-result">
+      <div class="result-body">
+        <h1 class="result-title" id="result-title">Players won!</h1>
+        <p class="result-subtitle" id="result-subtitle">Nice detective work.</p>
+        <p class="result-imposters" id="result-imposters"></p>
+      </div>
+      <footer class="screen-footer result-footer">
+        <button class="btn btn-primary" id="btn-play-again" type="button">Play again</button>
+        <button class="btn btn-ghost" id="btn-quit" type="button">Quit</button>
+      </footer>
+    </section>
+
+  </main>
+
+  <script src="words.js"></script>
+  <script src="app.js"></script>
+  <script>
+    // Register the service worker for offline support (PWA).
+    // Skipped on file:// — service workers require http(s).
+    if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js').catch((err) => {
+          console.warn('Service worker registration failed:', err);
+        });
+      });
+    }
+  </script>
+</body>
+</html>

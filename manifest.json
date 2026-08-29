@@ -1,0 +1,19 @@
+{
+  "name": "Imposter",
+  "short_name": "Imposter",
+  "description": "A kids-friendly Imposter party game. Pass the phone, reveal your secret word, find the imposter!",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0f1226",
+  "theme_color": "#0f1226",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
