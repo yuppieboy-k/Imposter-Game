@@ -129,13 +129,14 @@
   }
 
   // ---------- Reveal screen ----------
-  function renderReveal() {
+    function renderReveal() {
     const name = state.playerNames[state.revealIndex] || `Player ${state.revealIndex + 1}`;
     $('#reveal-player-name').textContent = name;
 
     // Reset reveal UI
     $('#btn-reveal').hidden = false;
     $('#reveal-word').hidden = true;
+    $('#reveal-word-hint').classList.remove('show');
   }
 
   function showRevealedWord() {
@@ -146,6 +147,15 @@
     const wordEl = $('#reveal-word-text');
     wordEl.textContent = text;
     wordEl.classList.toggle('is-imposter', isImposter);
+
+    // Show hint for imposters only: first letter of the round word
+    const hintEl = $('#reveal-word-hint');
+    hintEl.classList.remove('show');
+    if (isImposter && state.roundWord) {
+      hintEl.textContent = `Hint: ${state.roundWord[0]}`;
+      hintEl.classList.add('show');
+    }
+
     $('#btn-reveal').hidden = true;
     $('#reveal-word').hidden = false;
   }

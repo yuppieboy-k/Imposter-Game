@@ -214,6 +214,17 @@ input[type="number"] { -moz-appearance: textfield; }
   letter-spacing: 0.18em;
 }
 
+.reveal-word-hint {
+  display: none;
+  margin-top: 8px;
+  font-size: 14px;
+  color: var(--text-dim);
+  font-weight: 600;
+}
+.reveal-word-hint.show {
+  display: block;
+}
+
 /* ===== Hype screen ===== */
 .hype-body {
   flex: 1;
